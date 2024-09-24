@@ -1,15 +1,21 @@
-// import { getItem } from '../common/storage.js';
-// import { generateWeekRange } from '../common/time.utils.js';
-// import { renderEvents } from '../events/events.js';
-// import { createNumbersArray } from '../common/createNumbersArray.js';
+import { getItem } from "../common/storage.js";
+import { generateWeekRange } from "../common/time.utils.js";
+import { renderEvents } from "../events/events.js";
+import { createNumbersArray } from "../common/createNumbersArray.js";
 
 const generateDay = () => {
   // функция должна сгенерировать и вернуть разметку дня в виде строки
   // разметка состоит из 24 часовых временных слотов (.calendar__time-slot)
+  let hours24 = "";
+  for (let i = 0; i <= 24; i += 1) {
+    hours24 += "<td></td>";
+  }
+  return hours24;
 };
 
 export const renderWeek = () => {
-  const week = document.querySelector('.calendar__week');
+
+  const week = document.querySelector(".calendar__week");
   week.innerHTML = `<table>
   <tr>
       <th>Header 1</th>

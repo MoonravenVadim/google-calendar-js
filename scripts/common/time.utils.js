@@ -1,4 +1,4 @@
-import shmoment from './shmoment.js';
+import shmoment from "./shmoment.js";
 
 // вернет дату понедельника той недели, в которую входит переданный день
 export const getStartOfWeek = (date) => {

@@ -63,6 +63,11 @@
   font-size: 0.7em;
 }
 
+table {
+  width: 100%;
+  flex-grow: 1;
+}
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
@@ -86,4 +91,10 @@ body {
 
 .calendar__week-container {
   display: flex;
+  width: 100vw;
+}
+
+.calendar__week {
+  display: flex;
+  width: 100vw;
 }
