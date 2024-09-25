@@ -16,9 +16,19 @@ function renderCurrentMonth() {
 const onChangeWeek = (event) => {
   // при переключении недели обновите displayedWeekStart в storage
   // и перерисуйте все необходимые элементы страницы (renderHeader, renderWeek, renderCurrentMonth)
+  const direction = event.target.dataset.direction;
+  console.log(direction);
+  if (direction === "prev") {
+    setItem(
+      "displayedWeekStart",
+      new Date(
+        getItem("displayedWeekStart").getTime() - 7 * 24 * 60 * 60 * 1000,
+      ),
+    );
+  }
 };
 
 export const initNavigation = () => {
   renderCurrentMonth();
-  navElem.addEventListener('click', onChangeWeek);
+  navElem.addEventListener("click", onChangeWeek);
 };
