@@ -22,3 +22,6 @@ export const renderHeader = () => {
 
 // при клике на кнопку "Create" открыть модальное окно с формой для создания события
 // назначьте здесь обработчик
+
+const createBtn = document.querySelector(".create-event-btn");
+createBtn.addEventListener("click", openModal);

@@ -1,9 +1,9 @@
-import { getItem, setItem } from '../common/storage.js';
-import shmoment from '../common/shmoment.js';
-import { openPopup, closePopup } from '../common/popup.js';
+import { getItem, setItem } from "../common/storage.js";
+import shmoment from "../common/shmoment.js";
+import { openPopup, closePopup } from "../common/popup.js";
 
-const weekElem = document.querySelector('.calendar__week');
-const deleteEventBtn = document.querySelector('.delete-event-btn');
+const weekElem = document.querySelector(".calendar__week");
+const deleteEventBtn = document.querySelector(".delete-event-btn");
 
 function handleEventClick(event) {
   // если произошел клик по событию, то нужно паказать попап с кнопкой удаления
@@ -19,6 +19,7 @@ const createEventElement = (event) => {
   // событие должно позиционироваться абсолютно внутри нужной ячейки времени внутри дня
   // нужно добавить id события в дата атрибут
   // здесь для создания DOM элемента события используйте document.createElement
+  const newDiv = document.createElement("div");
 };
 
 export const renderEvents = () => {
@@ -38,6 +39,6 @@ function onDeleteEvent() {
   // перерисовать события на странице в соответствии с новым списком событий в storage (renderEvents)
 }
 
-deleteEventBtn.addEventListener('click', onDeleteEvent);
+deleteEventBtn.addEventListener("click", onDeleteEvent);
 
-weekElem.addEventListener('click', handleEventClick);
+weekElem.addEventListener("click", handleEventClick);

@@ -15,10 +15,12 @@ const generateDay = () => {
 
 export const renderWeek = () => {
   const weekElem = document.querySelector(".calendar__week");
-  const week = generateWeekRange(getItem("displayedWeekStart")).map(
-    (day) =>
-      `<div class="calendar__day" data-day="${day.getDate()}">${generateDay()}</div>`,
-  ).join("");
+  const week = generateWeekRange(getItem("displayedWeekStart"))
+    .map(
+      (day) =>
+        `<div class="calendar__day" data-day="${day.getDate()}">${generateDay()}</div>`,
+    )
+    .join("");
   weekElem.innerHTML = week;
   // функция должна сгенерировать разметку недели в виде строки и вставить ее на страницу (в .calendar__week)
   // разметка недели состоит из 7 дней (.calendar__day) отображаемой недели
