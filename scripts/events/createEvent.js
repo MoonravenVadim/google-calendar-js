@@ -1,18 +1,21 @@
-import { getItem, setItem } from '../common/storage.js';
-import { renderEvents } from './events.js';
-import { getDateTime } from '../common/time.utils.js';
-import { closeModal } from '../common/modal.js';
+import { getItem, setItem } from "../common/storage.js";
+import { renderEvents } from "./events.js";
+import { getDateTime } from "../common/time.utils.js";
+import { closeModal } from "../common/modal.js";
 
-const eventFormElem = document.querySelector('.event-form');
-const closeEventFormBtn = document.querySelector('.create-event__close-btn');
+const eventFormElem = document.querySelector(".event-form");
+const closeEventFormBtn = document.querySelector(".create-event__close-btn");
 
 function clearEventForm() {
   // ф-ция должна очистить поля формы от значений
+  const form = document.querySelector(".event-form");
+  form.reset();
 }
 
 function onCloseEventForm() {
   // здесь нужно закрыть модальное окно и очистить форму
   closeModal();
+  clearEventForm();
 }
 
 function onCreateEvent(event) {
@@ -34,6 +37,22 @@ function onCreateEvent(event) {
   const title = formData.get("title");
   const description = formData.get("description");
 
+  const events = getItem("events");
+
+  if (events.length >= 1) {
+    for (let i = 0; i < events.length; i++) {
+      const { id, title, description, start, end } = events[i];
+      const eventStart = new Date(start).getTime();
+      const eventEnd = new Date(end).getTime();
+      const currentEventStart = new Date(date + "T" + startTime).getTime();
+      const currentEventEnd = new Date(date + "T" + endTime).getTime();
+      if (currentEventStart < eventEnd && currentEventEnd > eventStart) {
+        alert("a new event intersects with an existing one");
+        return undefined;
+      }
+    }
+  }
+
   const newEvent = {};
   newEvent.id = Math.random();
 
@@ -44,7 +63,6 @@ function onCreateEvent(event) {
   const endTimeInDateFormat = getDateTime(date, endTime);
   newEvent.start = startTimeInDateFormat;
   newEvent.end = endTimeInDateFormat;
-  const events = getItem("events");
   events.push(newEvent);
   onCloseEventForm();
   renderEvents();
